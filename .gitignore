@@ -1,0 +1,75 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+!.env.template
+.flaskenv
+.streamlit/secrets.toml
+secrets/
+credentials/
+*.key
+*.pem
+
+# Sensitive or locally supplied clinical data
+# Keep safe synthetic fixtures in version control (for example, data/synthetic/).
+data/private/
+data/raw/
+data/real_patient_data/
+uploads/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+ENV/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+build/
+dist/
+*.egg-info/
+
+# Local app state and generated runtime files
+instance/
+*.db
+*.sqlite
+*.sqlite3
+*.log
+logs/
+.cache/
+tmp/
+temp/
+
+# JavaScript tooling (if used for the front end)
+node_modules/
+.npm/
+.yarn/cache/
+.vite/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editors and operating systems
+.vscode/
+.idea/
+*.code-workspace
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Microsoft Office lock files
+~$*.docx
+~$*.pptx
+~$*.xlsx
+
+# Local document-rendering QA artifacts
+_qa*/
