@@ -75,7 +75,7 @@ The prototype is intended to demonstrate clearer patient outreach and reduced ma
 
 ## Project status
 
-The project is currently in the planning and initial setup stage. The working plan is available in [Azra Team Working Plan V2](./Azra_Team_Working_Plan_V2.docx).
+The project is currently in the planning and initial setup stage. The research-backed working plan is available in [Azra Team Working Plan V3](./Azra_Team_Working_Plan_V3.docx). The reasoning behind the revisions is documented in [Why I Changed the Azra Working Plan for V3](./Azra_Working_Plan_V3_Change_Rationale.md).
 
 ## Contributors
 
