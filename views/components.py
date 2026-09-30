@@ -18,6 +18,29 @@ STATUS_CLASS = {
 }
 
 
+def reset_scroll_on_page_change(page_key: str) -> None:
+    """Return the main pane to the top only when navigation changes the view.
+
+    Streamlit keeps the same scroll container between pages. Without this small
+    bridge, moving from a long review page can open the next page at its bottom.
+    """
+    if st.session_state.get("_active_view") == page_key:
+        return
+
+    st.session_state["_active_view"] = page_key
+    st.html(
+        """
+        <script>
+        requestAnimationFrame(() => {
+            const main = document.querySelector('[data-testid="stMain"]');
+            if (main) main.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        });
+        </script>
+        """,
+        unsafe_allow_javascript=True,
+    )
+
+
 def load_css(path: Path) -> None:
     """Load the small, local stylesheet used for branded presentation details."""
     st.markdown(f"<style>{path.read_text(encoding='utf-8')}</style>", unsafe_allow_html=True)

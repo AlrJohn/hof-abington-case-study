@@ -10,6 +10,7 @@ from views.components import (
     render_channel_notice,
     render_page_header,
     render_workflow_steps,
+    reset_scroll_on_page_change,
 )
 
 
@@ -19,6 +20,7 @@ CHANNELS = ["Patient Portal", "Email", "SMS", "Other / Future Integration"]
 def render() -> None:
     """Render the clean patient experience only after clinician approval."""
     initialize_state(st.session_state)
+    reset_scroll_on_page_change("patient_preview")
     render_page_header(
         "Approved patient experience",
         "Patient Preview",
@@ -70,21 +72,22 @@ def render() -> None:
         "The patient view intentionally excludes match evidence, source IDs, internal scores, and clinician controls.",
     )
 
-    back, send = st.columns([1, 1])
-    with back:
-        if st.button("Back to clinician review", use_container_width=True):
-            st.switch_page("views/clinician_review.py")
-    with send:
-        if not st.session_state["sent"]:
-            if st.button(
-                "Simulate send",
-                type="primary",
-                use_container_width=True,
-            ):
-                mark_sent(st.session_state)
-                st.rerun()
-        else:
-            st.success("Simulated delivery complete. No external message was sent.")
+    with st.container(key="patient_actions"):
+        back, send = st.columns([1, 1])
+        with back:
+            if st.button("Back to clinician review", use_container_width=True):
+                st.switch_page("views/clinician_review.py")
+        with send:
+            if not st.session_state["sent"]:
+                if st.button(
+                    "Simulate send",
+                    type="primary",
+                    use_container_width=True,
+                ):
+                    mark_sent(st.session_state)
+                    st.rerun()
+            else:
+                st.success("Simulated delivery complete. No external message was sent.")
 
 
 render()

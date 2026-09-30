@@ -28,9 +28,10 @@ body,
 }
 
 [data-testid="stMainBlockContainer"] {
-    max-width: 1240px;
-    padding-top: 2.25rem;
-    padding-bottom: 4rem;
+    max-width: none;
+    padding-top: 5rem;
+    padding-bottom: 6rem;
+    width: 100%;
 }
 
 [data-testid="stSidebar"] {
@@ -119,6 +120,7 @@ body,
     letter-spacing: -0.045em;
     line-height: 1.08;
     margin: 0;
+    overflow-wrap: anywhere;
 }
 
 .azra-page-header p {
@@ -177,6 +179,47 @@ body,
     font-weight: 700;
     line-height: 1;
     padding: 0.42rem 0.7rem;
+    white-space: nowrap;
+}
+
+.azra-candidate-grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    margin-bottom: 1rem;
+}
+
+.azra-candidate-field {
+    min-width: 0;
+}
+
+.azra-candidate-field > span {
+    color: var(--azra-muted);
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.4rem;
+    text-transform: uppercase;
+}
+
+.azra-candidate-field strong,
+.azra-candidate-field small {
+    display: block;
+    overflow-wrap: anywhere;
+}
+
+.azra-candidate-field strong {
+    color: var(--azra-text);
+    font-size: 0.95rem;
+    line-height: 1.45;
+}
+
+.azra-candidate-field small {
+    color: var(--azra-muted);
+    font-size: 0.78rem;
+    line-height: 1.45;
+    margin-top: 0.35rem;
 }
 
 .azra-status-ready,
@@ -315,6 +358,10 @@ body,
     margin: 0.35rem 0 0;
 }
 
+.azra-patient-banner h1 a {
+    display: none !important;
+}
+
 .azra-patient-section {
     box-shadow: none;
     margin: 0.75rem 0;
@@ -380,17 +427,71 @@ body,
     border-radius: 10px;
 }
 
+@media (max-width: 1200px) {
+    [class*="st-key-review_workspace"] [data-testid="stHorizontalBlock"],
+    [class*="st-key-review_actions"] [data-testid="stHorizontalBlock"] {
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+
+    [class*="st-key-review_workspace"] [data-testid="stColumn"],
+    [class*="st-key-review_actions"] [data-testid="stColumn"] {
+        flex: 1 1 100% !important;
+        min-width: 100% !important;
+        width: 100% !important;
+    }
+
+    .azra-summary-card {
+        min-height: 0;
+    }
+}
+
 @media (max-width: 800px) {
-    [data-testid="stSidebar"],
-    [data-testid="stSidebarCollapsedControl"],
-    [data-testid="stExpandSidebarButton"] {
+    [data-testid="stSidebarCollapsedControl"] {
         display: none !important;
     }
 
     [data-testid="stMainBlockContainer"] {
         padding-left: 1rem;
         padding-right: 1rem;
-        padding-top: 1.25rem;
+        padding-top: 4.75rem;
+        padding-bottom: 5rem;
+    }
+
+    .azra-score-card {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+}
+
+@media (min-width: 561px) and (max-width: 800px) {
+    [class*="st-key-queue_metrics"] [data-testid="stHorizontalBlock"] {
+        flex-direction: row !important;
+        gap: 1rem;
+    }
+
+    [class*="st-key-queue_metrics"] [data-testid="stColumn"] {
+        flex: 1 1 0 !important;
+        min-width: 0 !important;
+        width: auto !important;
+    }
+}
+
+@media (max-width: 560px) {
+    [class*="st-key-case_summary"] [data-testid="stHorizontalBlock"],
+    [class*="st-key-queue_metrics"] [data-testid="stHorizontalBlock"],
+    [class*="st-key-patient_actions"] [data-testid="stHorizontalBlock"] {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    [class*="st-key-case_summary"] [data-testid="stColumn"],
+    [class*="st-key-queue_metrics"] [data-testid="stColumn"],
+    [class*="st-key-patient_actions"] [data-testid="stColumn"] {
+        flex: 1 1 100% !important;
+        min-width: 100% !important;
+        width: 100% !important;
     }
 
     .azra-workflow {
@@ -401,12 +502,6 @@ body,
         border-left: 3px solid var(--azra-border);
         border-top: 0;
         padding: 0.35rem 0 0.35rem 0.65rem;
-    }
-
-    .azra-score-card {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 0.75rem;
     }
 }
 

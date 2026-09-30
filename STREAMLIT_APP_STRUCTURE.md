@@ -5,6 +5,8 @@ This structure separates the implemented CS2 interface from the CS1-owned genera
 ```text
 Hof_Abington_Case_Study/
 |-- app.py                         CS2: Streamlit entry point
+|-- requirements.txt              Shared: pinned runtime dependency
+|-- AZRA_UI_RESEARCH.md            CS2: public-reference design decisions
 |-- .streamlit/
 |   `-- config.toml                CS2: theme and application settings
 |-- assets/
@@ -23,12 +25,15 @@ Hof_Abington_Case_Study/
 |   |-- evaluation_service.py      CS1: comprehension evaluation
 |   |-- data_adapter.py            CS2: stable UI-facing data shape and demo behavior
 |   `-- ui_state.py                CS2: workflow state transitions
-`-- views/
-    |-- __init__.py
-    |-- components.py              CS2: reusable presentation helpers
-    |-- candidate_queue.py         CS2: queue and status
-    |-- clinician_review.py        CS2: review and approval workflow
-    `-- patient_preview.py         CS2: patient preview and simulated send
+|-- views/
+|   |-- __init__.py
+|   |-- components.py              CS2: reusable presentation helpers
+|   |-- candidate_queue.py         CS2: queue and status
+|   |-- clinician_review.py        CS2: review and approval workflow
+|   `-- patient_preview.py         CS2: patient preview and simulated send
+`-- tests/
+    |-- test_app.py                CS2: Streamlit page and workflow checks
+    `-- test_data_adapter.py       CS2: adapter and state-transition checks
 ```
 
 ## Ownership Boundary
@@ -39,7 +44,7 @@ CS2 owns the Streamlit entry point, view modules, UI state, presentation styling
 
 ## Integration Boundary
 
-When implementation begins, the views should call the service modules through a small set of operations:
+During CS1 integration, the views should continue to use this small set of adapter operations:
 
 ```text
 generate_outreach(patient, trial, match_evidence)
@@ -47,7 +52,7 @@ evaluate_message(message)
 regenerate_section(section_id, instruction, context)
 ```
 
-`services/data_adapter.py` will normalize the returned data before it reaches a view. This allows CS2 to build against fixture data while CS1 completes the live functions, and it limits later schema changes to one place.
+`services/data_adapter.py` normalizes data before it reaches a view. This lets CS2 run against deterministic demo data while CS1 completes the live functions, and it limits later schema changes to one place.
 
 ## Current State
 

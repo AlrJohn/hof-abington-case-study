@@ -28,7 +28,7 @@ The core differentiators are:
 - Trust cues and channel-aware delivery previews
 - Structured LLM output that can be validated before display
 
-## Planned demonstration flow
+## Demonstration flow
 
 1. Open a queue of synthetic trial candidates.
 2. Select one patient who has already been matched to a trial.
@@ -44,12 +44,12 @@ The core differentiators are:
 
 The proof of concept is intentionally small: one fully working synthetic patient and one trial.
 
-- **Patient data:** Synthetic, FHIR-shaped JSON
-- **Trial data:** A real public or realistic trial represented as JSON
-- **Match context:** Structured criteria or characteristics supplied as an existing match
-- **Application:** Streamlit is the default for the compressed build unless the team has already agreed on another framework
-- **Generation:** An LLM API constrained to supplied facts and structured output
-- **Evaluation:** A second fixed PEMAT-informed prompt returning scores, issues, and a recommendation
+- **Patient data:** One clearly labeled synthetic patient in the CS2 demo adapter
+- **Trial data:** One clearly labeled demonstration trial
+- **Match context:** Mock evidence supplied as an existing potential match
+- **Application:** Streamlit with three pages and session-state workflow control
+- **Generation:** Deterministic five-section demo output until CS1 connects the generation service
+- **Evaluation:** A deterministic PEMAT-informed rubric simulation until CS1 connects the evaluation service
 - **Traceability:** Source IDs attached to patient-specific statements
 - **Interface:** One clinician workflow and one patient-facing preview built in the same application
 - **State:** In-memory or local JSON status tracking for the demo
@@ -98,9 +98,9 @@ The prototype is intended to demonstrate a repeatable method for preparing and r
 
 ## Project status
 
-No code had been started as of Wednesday, September 30. The team is now following a compressed, fixture-first build plan focused on one complete demo path. The current working plan is [Azra Team Working Plan V4](./Azra_Team_Working_Plan_V4.docx), and the immediate assignments are in the [Wednesday Recovery Task Plan](./Azra_Wednesday_Recovery_Task_Plan.md). The prior [V3 change rationale](./Azra_Working_Plan_V3_Change_Rationale.md) remains available for the research decisions that preceded the September 29 update.
+The CS2 Streamlit prototype is implemented and covers the complete fixture-backed demonstration path: queue, clinician review, editing, comprehension recheck, targeted regeneration, approval, delivery preview, simulated send, and reset. The current working plan is [Azra Team Working Plan V4](./Azra_Team_Working_Plan_V4.docx), and the task breakdown is in the [Wednesday Recovery Task Plan](./Azra_Wednesday_Recovery_Task_Plan.md). The prior [V3 change rationale](./Azra_Working_Plan_V3_Change_Rationale.md) remains available for the research decisions that preceded the September 29 update.
 
-The Streamlit project structure and CS1/CS2 ownership boundary are documented in [Streamlit Application Structure](./STREAMLIT_APP_STRUCTURE.md). CS1-owned fixture and service placeholders remain unchanged. CS2-owned views run against deterministic demo behavior in `services/data_adapter.py` so the complete interface can be tested before service integration.
+The Streamlit project structure and CS1/CS2 ownership boundary are documented in [Streamlit Application Structure](./STREAMLIT_APP_STRUCTURE.md). CS1-owned fixture and service placeholders remain unchanged. CS2-owned views run against deterministic demo behavior in `services/data_adapter.py` so the complete interface can be demonstrated and tested before service integration.
 
 ### CS1 integration boundary
 

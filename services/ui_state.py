@@ -9,6 +9,7 @@ from services.data_adapter import DEMO_CANDIDATE_ID
 
 
 _DEFAULT_STATE: dict[str, Any] = {
+    "_active_view": None,
     "selected_candidate_id": DEMO_CANDIDATE_ID,
     "workflow_status": "Ready for outreach",
     "message": None,

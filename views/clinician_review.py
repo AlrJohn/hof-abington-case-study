@@ -22,6 +22,7 @@ from views.components import (
     render_status_badge,
     render_summary_card,
     render_workflow_steps,
+    reset_scroll_on_page_change,
 )
 
 
@@ -135,6 +136,7 @@ def _render_revision_controls() -> None:
 def render() -> None:
     """Render the complete fixture-backed clinician workflow."""
     initialize_state(st.session_state)
+    reset_scroll_on_page_change("clinician_review")
     case_data = get_case(st.session_state["selected_candidate_id"])
     status = st.session_state["workflow_status"]
 
@@ -145,25 +147,26 @@ def render() -> None:
     )
     render_workflow_steps(status)
 
-    patient, trial, match = st.columns(3)
-    with patient:
-        render_summary_card(
-            "Synthetic patient",
-            case_data["patient_summary"]["display_name"],
-            f"{case_data['patient_summary']['condition']} · {case_data['patient_summary']['patient_id']}",
-        )
-    with trial:
-        render_summary_card(
-            "Trial",
-            case_data["trial_summary"]["title"],
-            f"{case_data['trial_summary']['phase']} · {case_data['trial_summary']['trial_id']}",
-        )
-    with match:
-        render_summary_card(
-            "Azra match context",
-            "Potential match supplied",
-            case_data["match_summary"]["review_note"],
-        )
+    with st.container(key="case_summary"):
+        patient, trial, match = st.columns(3)
+        with patient:
+            render_summary_card(
+                "Synthetic patient",
+                case_data["patient_summary"]["display_name"],
+                f"{case_data['patient_summary']['condition']} · {case_data['patient_summary']['patient_id']}",
+            )
+        with trial:
+            render_summary_card(
+                "Trial",
+                case_data["trial_summary"]["title"],
+                f"{case_data['trial_summary']['phase']} · {case_data['trial_summary']['trial_id']}",
+            )
+        with match:
+            render_summary_card(
+                "Azra match context",
+                "Potential match supplied",
+                case_data["match_summary"]["review_note"],
+            )
 
     st.caption(case_data["patient_summary"]["data_notice"])
     st.divider()
@@ -182,55 +185,57 @@ def render() -> None:
                 st.rerun()
         return
 
-    editor_column, review_column = st.columns([1.75, 1], gap="large")
-    with editor_column:
-        _render_message_editor(case_data)
+    with st.container(key="review_workspace"):
+        editor_column, review_column = st.columns([1.75, 1], gap="large")
+        with editor_column:
+            _render_message_editor(case_data)
 
-    with review_column:
-        st.subheader("Comprehension check")
-        evaluation = st.session_state["evaluation"]
-        render_evaluation(evaluation)
+        with review_column:
+            st.subheader("Comprehension check")
+            evaluation = st.session_state["evaluation"]
+            render_evaluation(evaluation)
 
-        if evaluation.get("is_stale"):
-            st.warning(
-                "The message changed after this evaluation. Run the check again before approval.",
-            )
-            if st.button("Run comprehension check", type="primary", use_container_width=True):
-                st.session_state["evaluation"] = evaluate_message(st.session_state["message"])
-                st.session_state["workflow_status"] = "Needs review"
-                st.rerun()
+            if evaluation.get("is_stale"):
+                st.warning(
+                    "The message changed after this evaluation. Run the check again before approval.",
+                )
+                if st.button("Run comprehension check", type="primary", use_container_width=True):
+                    st.session_state["evaluation"] = evaluate_message(st.session_state["message"])
+                    st.session_state["workflow_status"] = "Needs review"
+                    st.rerun()
 
-        st.subheader("Current status")
-        render_status_badge(st.session_state["workflow_status"])
+            st.subheader("Current status")
+            render_status_badge(st.session_state["workflow_status"])
 
-        st.subheader("Evidence sources")
-        for source in case_data["sources"]:
-            with st.expander(f"{source['id']} · {source['label']}"):
-                st.caption(source["category"])
-                st.write(source["detail"])
+            st.subheader("Evidence sources")
+            for source in case_data["sources"]:
+                with st.expander(f"{source['id']} · {source['label']}"):
+                    st.caption(source["category"])
+                    st.write(source["detail"])
 
     st.divider()
-    controls, approval = st.columns([1.25, 1], gap="large")
-    with controls:
-        _render_revision_controls()
+    with st.container(key="review_actions"):
+        controls, approval = st.columns([1.25, 1], gap="large")
+        with controls:
+            _render_revision_controls()
 
-    with approval:
-        st.subheader("Clinician decision")
-        st.write("Approve the exact message version shown above before opening the patient preview.")
-        evaluation_is_stale = st.session_state["evaluation"].get("is_stale", True)
-        if not st.session_state["approved"]:
-            if st.button(
-                "Approve message",
-                type="primary",
-                disabled=evaluation_is_stale,
-                use_container_width=True,
-            ):
-                approve_message(st.session_state)
-                st.switch_page("views/patient_preview.py")
-        else:
-            st.success("This exact message version is approved.")
-            if st.button("Open patient preview", type="primary", use_container_width=True):
-                st.switch_page("views/patient_preview.py")
+        with approval:
+            st.subheader("Clinician decision")
+            st.write("Approve the exact message version shown above before opening the patient preview.")
+            evaluation_is_stale = st.session_state["evaluation"].get("is_stale", True)
+            if not st.session_state["approved"]:
+                if st.button(
+                    "Approve message",
+                    type="primary",
+                    disabled=evaluation_is_stale,
+                    use_container_width=True,
+                ):
+                    approve_message(st.session_state)
+                    st.switch_page("views/patient_preview.py")
+            else:
+                st.success("This exact message version is approved.")
+                if st.button("Open patient preview", type="primary", use_container_width=True):
+                    st.switch_page("views/patient_preview.py")
 
 
 render()
