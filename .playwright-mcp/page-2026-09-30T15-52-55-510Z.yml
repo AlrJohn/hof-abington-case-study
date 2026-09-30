@@ -1,0 +1,160 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - link [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img "Azra AI" [ref=e5]
+      - generic [ref=e6]:
+        - button "Solutions" [ref=e8] [cursor=pointer]
+        - button "Services" [ref=e12] [cursor=pointer]
+        - button "Resources" [ref=e16] [cursor=pointer]
+        - button "Company" [ref=e20] [cursor=pointer]
+      - link "Get a Demo" [ref=e26] [cursor=pointer]:
+        - /url: /contact
+  - main [ref=e27]:
+    - generic [ref=e30]:
+      - generic [ref=e31]:
+        - heading "Precision Research. Automated." [level=1] [ref=e32]
+        - generic [ref=e36]:
+          - paragraph [ref=e37]: Agentic AI Clinical Research Platform
+          - paragraph [ref=e38]: We unify your EMR data, physician notes, and PDF reports into a single, intelligent patient layer.
+          - paragraph [ref=e39]: From instant feasibility to real-time enrollment and automated reporting, we turn your hidden clinical narrative into a high-velocity research engine.
+        - link "Get a Demo" [ref=e41] [cursor=pointer]:
+          - /url: /contact
+      - img "Precision Research. Automated." [ref=e44]
+    - generic [ref=e47]:
+      - generic [ref=e48]:
+        - heading "Unified Patient Intelligence Layer" [level=2] [ref=e49]
+        - paragraph [ref=e51]: We aggregate the structured and the unstructured, the codes and the context, into one Patient Intelligence Layer. It is more than data. It is the full clinical narrative, finally made actionable.
+        - paragraph [ref=e52]: "Prompt-Based Patient Exploration: Simply copy and paste your protocol or type the criteria and our AI intelligence automatically parses the eligibility criteria."
+        - paragraph [ref=e53]: The Patient Intelligence Layer transforms fragmented EMR data into a unified, queryable clinical narrative.
+      - img "Unified Patient Intelligence Layer" [ref=e55]
+    - generic [ref=e58]:
+      - generic [ref=e59]:
+        - heading "Conversational UI for Data-Driven Feasibility" [level=2] [ref=e60]
+        - paragraph [ref=e62]: Enterprise-grade, data-driven feasibility. By simply uploading a protocol or pasting eligibility criteria, users gain immediate access to actionable site-level intelligence.
+        - list [ref=e63]:
+          - listitem [ref=e64]:
+            - generic [ref=e66]: Total matched patients per site
+          - listitem [ref=e67]:
+            - generic [ref=e69]: Monthly patient match trends over a one-year period
+          - listitem [ref=e70]:
+            - generic [ref=e72]: Real-time tracking of newly diagnosed or progressed patients
+          - listitem [ref=e73]:
+            - generic [ref=e75]: Geographic analysis of patient proximity to specific sites
+          - listitem [ref=e76]:
+            - generic [ref=e78]: Comparative benchmarking against other trials within the network and at the same site
+        - paragraph [ref=e79]: Feasibility moves from estimation to precision, powered by real patient data.
+      - img "Conversational UI for Data-Driven Feasibility" [ref=e81]
+    - generic [ref=e84]:
+      - generic [ref=e85]:
+        - heading "Agentic Pre-Screening" [level=2] [ref=e86]
+        - paragraph [ref=e88]: Azra enables automated trial pre-screening, allowing research teams to know, close to real time and with high precision, which patients may be eligible for actively recruiting trials.
+        - paragraph [ref=e89]: Every eligibility determination is traceable. The platform provides 100% analysis transparency, including precise document text citations that substantiate each inclusion or exclusion criterion.
+        - paragraph [ref=e90]: Automated pre-screening replaces manual chart review with traceable, AI-driven patient identification.
+      - img "Agentic Pre-Screening" [ref=e92]
+    - generic [ref=e95]:
+      - generic [ref=e96]:
+        - heading "Automated Portfolio Reporting" [level=2] [ref=e97]
+        - paragraph [ref=e99]: Azra offers a configurable analytics module with intuitive dashboards for monitoring key operational insights from the enterprise level down to a specific study.
+        - paragraph [ref=e100]: Research leadership gains visibility into enrollment performance, pipeline health, and operational efficiency across the entire trial portfolio.
+      - img "Automated Portfolio Reporting" [ref=e102]
+    - generic [ref=e114]:
+      - heading "Proactive Trajectory Tracking & Progression Risk" [level=2] [ref=e115]
+      - paragraph [ref=e117]: The platform does not just see a patient as they are today; it uses the Intelligence Layer to monitor progression risk and track disease trajectories. By predicting future clinical milestones, the AI flags eligible trials for patients in advance, allowing sites to proactively plan enrollment before a patient's treatment window narrows.
+    - generic [ref=e129]:
+      - 'heading "The Azra Clinical Research Network: Connecting Care to Innovation" [level=2] [ref=e130]'
+      - paragraph [ref=e132]: Health systems can now opt-in to the Azra Clinical Research Network, directly connecting them to a pipeline of pharmaceutical studies tailored to their specific patient populations. This ecosystem allows hospitals to transform into active research hubs, offering patients local access to cutting-edge therapies while providing pharmaceutical companies with a high-fidelity, "ready-to-enroll" site network.
+    - generic [ref=e135]:
+      - heading "See the Agentic AI Clinical Research Platform in Action" [level=2] [ref=e136]
+      - paragraph [ref=e137]: See how Azra unifies your EMR data into a single patient intelligence layer that powers feasibility, automated pre-screening, and enterprise reporting across your clinical trial portfolio.
+      - link "Schedule a Consultation" [ref=e139] [cursor=pointer]:
+        - /url: /contact
+    - generic [ref=e146]:
+      - heading "Ready to Transform Patient Management Across Your Health System?" [level=2] [ref=e147]
+      - paragraph [ref=e148]: See how Azra AI delivers structured, closed-loop workflows that ensure care moves from documentation to completed action across your enterprise.
+      - link "Schedule an Enterprise Review" [ref=e151] [cursor=pointer]:
+        - /url: /contact
+  - contentinfo [ref=e152]:
+    - generic [ref=e153]:
+      - generic [ref=e154]:
+        - generic [ref=e155]:
+          - link [ref=e156] [cursor=pointer]:
+            - /url: /
+            - img "Azra AI" [ref=e157]
+          - paragraph [ref=e158]: Enterprise solutions and clinical services that transform patient care and clinical workflows.
+          - paragraph [ref=e159]: 1316 Adams Street, Suite 220, Nashville, TN 37208
+        - generic [ref=e160]:
+          - heading "Solutions" [level=3] [ref=e161]
+          - list [ref=e162]:
+            - listitem [ref=e163]:
+              - link "Closed-Loop Patient Management" [ref=e164] [cursor=pointer]:
+                - /url: /solutions/closed-loop-patient-management
+            - listitem [ref=e165]:
+              - link "Oncology" [ref=e166] [cursor=pointer]:
+                - /url: /solutions/oncology
+            - listitem [ref=e167]:
+              - link "Incidental Findings & Screening" [ref=e168] [cursor=pointer]:
+                - /url: /solutions/incidental-findings-screening
+            - listitem [ref=e169]:
+              - link "High-Risk Screening" [ref=e170] [cursor=pointer]:
+                - /url: /solutions/high-risk-screening
+            - listitem [ref=e171]:
+              - link "Multi-Disciplinary Case Review" [ref=e172] [cursor=pointer]:
+                - /url: /solutions/multi-disciplinary-case-review
+            - listitem [ref=e173]:
+              - link "Emergency-to-Outpatient Continuity" [ref=e174] [cursor=pointer]:
+                - /url: /solutions/emergency-department-continuity
+            - listitem [ref=e175]:
+              - link "Multidisciplinary Meetings" [ref=e176] [cursor=pointer]:
+                - /url: /solutions/tumor-board-solution
+            - listitem [ref=e177]:
+              - link "Registry Automation" [ref=e178] [cursor=pointer]:
+                - /url: /solutions/registry-automation
+            - listitem [ref=e179]:
+              - link "Clinical Trials" [ref=e180] [cursor=pointer]:
+                - /url: /solutions/clinical-trials
+            - listitem [ref=e181]:
+              - link "Enterprise Analytics & Insights" [ref=e182] [cursor=pointer]:
+                - /url: /solutions/enterprise-analytics
+        - generic [ref=e183]:
+          - heading "Services" [level=3] [ref=e184]
+          - list [ref=e185]:
+            - listitem [ref=e186]:
+              - link "Strategic Execution" [ref=e187] [cursor=pointer]:
+                - /url: /services
+            - listitem [ref=e188]:
+              - link "Clinical & Non-Clinical Navigation" [ref=e189] [cursor=pointer]:
+                - /url: /services
+            - listitem [ref=e190]:
+              - link "MDM / Tumor Board" [ref=e191] [cursor=pointer]:
+                - /url: /services
+            - listitem [ref=e192]:
+              - link "Cancer Registry Case Finding" [ref=e193] [cursor=pointer]:
+                - /url: /services
+        - generic [ref=e194]:
+          - heading "Resources" [level=3] [ref=e195]
+          - list [ref=e196]:
+            - listitem [ref=e197]:
+              - link "Blog" [ref=e198] [cursor=pointer]:
+                - /url: /resources/blog
+            - listitem [ref=e199]:
+              - link "Press Releases" [ref=e200] [cursor=pointer]:
+                - /url: /resources/press
+        - generic [ref=e201]:
+          - heading "Company" [level=3] [ref=e202]
+          - list [ref=e203]:
+            - listitem [ref=e204]:
+              - link "About Us" [ref=e205] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e206]:
+              - link "Careers" [ref=e207] [cursor=pointer]:
+                - /url: /careers
+            - listitem [ref=e208]:
+              - link "Contact Us" [ref=e209] [cursor=pointer]:
+                - /url: /contact
+            - listitem [ref=e210]:
+              - link "Privacy Policy" [ref=e211] [cursor=pointer]:
+                - /url: /privacy-policy
+      - paragraph [ref=e213]: © 2026 Azra AI. All rights reserved.
+  - alert [ref=e214]

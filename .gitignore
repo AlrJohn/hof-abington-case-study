@@ -16,6 +16,7 @@ data/private/
 data/raw/
 data/real_patient_data/
 uploads/
+local/
 
 # Python
 __pycache__/

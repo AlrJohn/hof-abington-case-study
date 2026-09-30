@@ -1,6 +1,6 @@
 # Azra Clinical Trial Outreach Case Study
 
-This project explores a clinician-reviewed outreach layer for patients whom Azra has already identified as possible clinical-trial candidates. The prototype turns supplied patient, trial, and match information into a personalized plain-language **Why Me** message while keeping clinical staff in control of what is sent.
+This project explores a clinician-reviewed outreach layer for patients whom Azra has already identified as possible clinical-trial candidates. The prototype turns supplied patient, trial, and match information into a short plain-language message, checks it against a fixed comprehension rubric, and keeps clinical staff in control of what is sent.
 
 ## The problem
 
@@ -16,14 +16,16 @@ This project begins **after** Azra has surfaced a possible patient-to-trial matc
 
 ## Proposed solution
 
-The prototype generates a structured patient message grounded only in supplied facts. A clinician can review the draft, inspect the source behind patient-specific statements, revise individual sections, approve the message, and simulate sending it. The patient then sees a clean version without clinician-only evidence controls.
+The prototype generates a structured patient message grounded only in supplied facts. It limits patient-specific detail to what is needed to explain the outreach, then applies a fixed PEMAT-informed evaluation for purpose, language, organization, actionability, trust, and safety wording. A clinician can inspect the sources, revise individual sections, approve the message, select a delivery concept, and simulate sending it. The patient sees a clean version without internal match evidence or clinician-only controls.
 
 The core differentiators are:
 
-- Patient-specific explanations instead of a generic trial summary
+- Limited patient-specific context instead of a generic trial summary or a list of sensitive match criteria
 - Source references for patient-specific statements
+- A fixed model-assisted comprehension evaluation with structured results
 - Clinician editing and approval before simulated delivery
 - Separate clinician and patient views of the same outreach
+- Trust cues and channel-aware delivery previews
 - Structured LLM output that can be validated before display
 
 ## Planned demonstration flow
@@ -31,11 +33,12 @@ The core differentiators are:
 1. Open a queue of synthetic trial candidates.
 2. Select one patient who has already been matched to a trial.
 3. Review the supplied patient facts, trial details, and match context.
-4. Generate the structured Why Me outreach.
-5. Inspect the evidence supporting a patient-specific statement.
-6. Edit the message or request a targeted rewrite of one section.
-7. Approve and simulate sending the message.
-8. Switch to the patient-facing view.
+4. Generate the structured five-section outreach.
+5. Review the model-assisted comprehension score and issue list.
+6. Inspect the evidence supporting a patient-specific statement.
+7. Edit the message or request a targeted rewrite of one section.
+8. Approve the message and select a delivery concept.
+9. Switch to the patient-facing view and simulate sending it.
 
 ## Technical approach
 
@@ -44,12 +47,13 @@ The proof of concept is intentionally small: one fully working synthetic patient
 - **Patient data:** Synthetic, FHIR-shaped JSON
 - **Trial data:** A real public or realistic trial represented as JSON
 - **Match context:** Structured criteria or characteristics supplied as an existing match
-- **Backend:** A lightweight Python service using Flask or FastAPI
+- **Application:** Streamlit is the default for the compressed build unless the team has already agreed on another framework
 - **Generation:** An LLM API constrained to supplied facts and structured output
+- **Evaluation:** A second fixed PEMAT-informed prompt returning scores, issues, and a recommendation
 - **Traceability:** Source IDs attached to patient-specific statements
-- **Interface:** Simple HTML, CSS, and JavaScript, or Streamlit
+- **Interface:** One clinician workflow and one patient-facing preview built in the same application
 - **State:** In-memory or local JSON status tracking for the demo
-- **Delivery:** Mocked approval, sending, and patient-portal experience
+- **Delivery:** Mocked channel selection, approval, sending, and patient-facing experience
 
 The exact framework and setup commands will be documented once implementation begins.
 
@@ -71,11 +75,13 @@ All patient information used for development and demonstration must be synthetic
 
 ## Success measures
 
-The prototype is intended to demonstrate clearer patient outreach and reduced manual rewriting. A future pilot could measure patient-reported clarity, reading level, clinician preparation time, approval rates, and common clinician edits. Enrollment and retention outcomes would require separate real-world evaluation.
+The prototype is intended to demonstrate a repeatable method for preparing and reviewing clearer patient outreach. Its comprehension result is a model-assisted rubric score, not proof that a patient understood the message. A future pilot could measure patient-reported clarity, clinician preparation time, approval rates, and common clinician edits. Enrollment, retention, and real patient comprehension would require separate evaluation.
 
 ## Project status
 
-The project is currently in the planning and initial setup stage. The research-backed working plan is available in [Azra Team Working Plan V3](./Azra_Team_Working_Plan_V3.docx). The reasoning behind the revisions is documented in [Why I Changed the Azra Working Plan for V3](./Azra_Working_Plan_V3_Change_Rationale.md).
+No code had been started as of Wednesday, September 30. The team is now following a compressed, fixture-first build plan focused on one complete demo path. The current working plan is [Azra Team Working Plan V4](./Azra_Team_Working_Plan_V4.docx), and the immediate assignments are in the [Wednesday Recovery Task Plan](./Azra_Wednesday_Recovery_Task_Plan.md). The prior [V3 change rationale](./Azra_Working_Plan_V3_Change_Rationale.md) remains available for the research decisions that preceded the September 29 update.
+
+The empty Streamlit project scaffold and CS1/CS2 ownership boundary are documented in [Streamlit Application Structure](./STREAMLIT_APP_STRUCTURE.md). Interface implementation is currently on hold.
 
 ## Contributors
 
