@@ -1,6 +1,6 @@
 # Streamlit Application Structure
 
-This scaffold separates the CS2-owned interface from the CS1-owned generation and evaluation work. No application behavior has been implemented yet.
+This structure separates the implemented CS2 interface from the CS1-owned generation and evaluation work. The current application uses deterministic demo behavior through the CS2 adapter until CS1's services are connected.
 
 ```text
 Hof_Abington_Case_Study/
@@ -8,7 +8,7 @@ Hof_Abington_Case_Study/
 |-- .streamlit/
 |   `-- config.toml                CS2: theme and application settings
 |-- assets/
-|   `-- styles.css                 CS2: optional presentation styling
+|   `-- styles.css                 CS2: Azra-inspired presentation styling
 |-- data/
 |   |-- README.md                  Fixture rules and ownership
 |   |-- patient.json               CS1: synthetic patient fixture
@@ -21,9 +21,11 @@ Hof_Abington_Case_Study/
 |   |-- __init__.py
 |   |-- outreach_service.py        CS1: generation and regeneration
 |   |-- evaluation_service.py      CS1: comprehension evaluation
-|   `-- data_adapter.py            CS2: stable UI-facing data shape
+|   |-- data_adapter.py            CS2: stable UI-facing data shape and demo behavior
+|   `-- ui_state.py                CS2: workflow state transitions
 `-- views/
     |-- __init__.py
+    |-- components.py              CS2: reusable presentation helpers
     |-- candidate_queue.py         CS2: queue and status
     |-- clinician_review.py        CS2: review and approval workflow
     `-- patient_preview.py         CS2: patient preview and simulated send
@@ -33,7 +35,7 @@ Hof_Abington_Case_Study/
 
 CS1 owns the fixture contents and the functions that generate, evaluate, and regenerate outreach. The placeholder files for that work are labeled `Work to be done by CS1`.
 
-CS2 owns the Streamlit entry point, view modules, UI state, presentation styling, and the adapter that shields the views from changes in CS1's response format. Those files are labeled as intentionally on hold.
+CS2 owns the Streamlit entry point, view modules, UI state, presentation styling, and the adapter that shields the views from changes in CS1's response format.
 
 ## Integration Boundary
 
@@ -49,4 +51,4 @@ regenerate_section(section_id, instruction, context)
 
 ## Current State
 
-The scaffold is complete. All CS2 implementation remains paused, as requested.
+The CS2 interface is implemented with deterministic synthetic behavior. CS1-owned fixture and service placeholders remain unchanged.

@@ -1,2 +1,26 @@
-# CS2 ownership.
-# Streamlit theme and application settings will be added when UI work begins.
+[theme]
+base = "light"
+primaryColor = "#4D287A"
+backgroundColor = "#FAF4FF"
+secondaryBackgroundColor = "#F7F3FA"
+textColor = "#1D1D20"
+linkColor = "#4D287A"
+borderColor = "#E4E2E6"
+dataframeBorderColor = "#E4E2E6"
+dataframeHeaderBackgroundColor = "#F7F3FA"
+baseRadius = "10px"
+buttonRadius = "10px"
+showWidgetBorder = true
+font = "'Poppins':https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+headingFont = "'Poppins':https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+
+[theme.sidebar]
+primaryColor = "#BA85FF"
+backgroundColor = "#250040"
+secondaryBackgroundColor = "#4D287A"
+textColor = "#FFFFFF"
+linkColor = "#FFFFFF"
+borderColor = "#4D287A"
+
+[browser]
+gatherUsageStats = false

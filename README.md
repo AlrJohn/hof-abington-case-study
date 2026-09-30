@@ -55,7 +55,26 @@ The proof of concept is intentionally small: one fully working synthetic patient
 - **State:** In-memory or local JSON status tracking for the demo
 - **Delivery:** Mocked channel selection, approval, sending, and patient-facing experience
 
-The exact framework and setup commands will be documented once implementation begins.
+The CS2 interface is implemented as a Streamlit prototype. Generation, evaluation, regeneration, and sending currently use deterministic simulated behavior until CS1 connects the corresponding services.
+
+## Run the prototype
+
+Use Python 3.11 or newer from the project directory:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+streamlit run app.py
+```
+
+Run the automated tests with:
+
+```powershell
+python -m unittest discover -s tests -v
+```
+
+The interface design decisions and public Azra references are documented in [Azra-Inspired UI Research](./AZRA_UI_RESEARCH.md).
 
 ## Scope and safety boundaries
 
@@ -81,7 +100,15 @@ The prototype is intended to demonstrate a repeatable method for preparing and r
 
 No code had been started as of Wednesday, September 30. The team is now following a compressed, fixture-first build plan focused on one complete demo path. The current working plan is [Azra Team Working Plan V4](./Azra_Team_Working_Plan_V4.docx), and the immediate assignments are in the [Wednesday Recovery Task Plan](./Azra_Wednesday_Recovery_Task_Plan.md). The prior [V3 change rationale](./Azra_Working_Plan_V3_Change_Rationale.md) remains available for the research decisions that preceded the September 29 update.
 
-The empty Streamlit project scaffold and CS1/CS2 ownership boundary are documented in [Streamlit Application Structure](./STREAMLIT_APP_STRUCTURE.md). Interface implementation is currently on hold.
+The Streamlit project structure and CS1/CS2 ownership boundary are documented in [Streamlit Application Structure](./STREAMLIT_APP_STRUCTURE.md). CS1-owned fixture and service placeholders remain unchanged. CS2-owned views run against deterministic demo behavior in `services/data_adapter.py` so the complete interface can be tested before service integration.
+
+### CS1 integration boundary
+
+The views call only the CS2 adapter. When CS1's implementation is ready, connect these operations inside `services/data_adapter.py` without rewriting the Streamlit pages:
+
+- `generate_outreach(patient, trial, match_evidence)`
+- `evaluate_message(message)`
+- `regenerate_section(section_id, instruction, context)`
 
 ## Contributors
 
