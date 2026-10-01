@@ -1,3 +1,89 @@
 {
-  "_status": "Work to be done by CS1"
+  "patient_id": "MARIA-001",
+  "trial_id": "NCT04471194",
+  "match_status": "POTENTIAL_MATCH",
+  "review_note": "Maria matches the supplied rural Pennsylvania, English communication, and overdue screening context. Final study eligibility must be confirmed by the study team.",
+  "criteria": [
+    {
+      "criterion_id": "C001",
+      "description": "Lives in a rural, segregated county of Pennsylvania",
+      "patient_value": true,
+      "matched": true,
+      "source_ids": [
+        "SRC-ELIGIBILITY"
+      ]
+    },
+    {
+      "criterion_id": "C002",
+      "description": "Able to speak, read, and communicate well in English",
+      "patient_value": true,
+      "matched": true,
+      "source_ids": [
+        "SRC-ELIGIBILITY"
+      ]
+    },
+    {
+      "criterion_id": "C003",
+      "description": "Out of date for cervical cancer screening",
+      "patient_value": true,
+      "matched": true,
+      "source_ids": [
+        "SRC-ELIGIBILITY"
+      ]
+    },
+    {
+      "criterion_id": "C004",
+      "description": "Out of date for colorectal cancer screening",
+      "patient_value": true,
+      "matched": true,
+      "source_ids": [
+        "SRC-ELIGIBILITY"
+      ]
+    },
+    {
+      "criterion_id": "C005",
+      "description": "No partial or complete hysterectomy",
+      "patient_value": false,
+      "matched": true,
+      "source_ids": [
+        "SRC-EXCLUSION"
+      ]
+    },
+    {
+      "criterion_id": "C006",
+      "description": "No family history of colorectal cancer",
+      "patient_value": false,
+      "matched": true,
+      "source_ids": [
+        "SRC-EXCLUSION"
+      ]
+    },
+    {
+      "criterion_id": "C007",
+      "description": "No personal history of cervical or colorectal cancer",
+      "patient_value": false,
+      "matched": true,
+      "source_ids": [
+        "SRC-EXCLUSION"
+      ]
+    },
+    {
+      "criterion_id": "C008",
+      "description": "No cognitive impairment",
+      "patient_value": false,
+      "matched": true,
+      "source_ids": [
+        "SRC-EXCLUSION"
+      ]
+    },
+    {
+      "criterion_id": "C009",
+      "description": "Not incarcerated",
+      "patient_value": false,
+      "matched": true,
+      "source_ids": [
+        "SRC-EXCLUSION"
+      ]
+    }
+  ]
 }
