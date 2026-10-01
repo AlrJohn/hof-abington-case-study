@@ -44,18 +44,18 @@ The core differentiators are:
 
 The proof of concept is intentionally small: one fully working synthetic patient and one trial.
 
-- **Patient data:** One clearly labeled synthetic patient in the CS2 demo adapter
+- **Patient data:** One clearly labeled synthetic patient loaded from the CS1 fixture
 - **Trial data:** One clearly labeled demonstration trial
 - **Match context:** Mock evidence supplied as an existing potential match
 - **Application:** Streamlit with three pages and session-state workflow control
-- **Generation:** Deterministic five-section demo output until CS1 connects the generation service
-- **Evaluation:** A deterministic PEMAT-informed rubric simulation until CS1 connects the evaluation service
+- **Generation:** Deterministic five-section output routed through the CS1 generation service
+- **Evaluation:** A deterministic PEMAT-informed rubric routed through the CS1 evaluation service
 - **Traceability:** Source IDs attached to patient-specific statements
 - **Interface:** One clinician workflow and one patient-facing preview built in the same application
 - **State:** In-memory or local JSON status tracking for the demo
 - **Delivery:** Mocked channel selection, approval, sending, and patient-facing experience
 
-The CS2 interface is implemented as a Streamlit prototype. Generation, evaluation, regeneration, and sending currently use deterministic simulated behavior until CS1 connects the corresponding services.
+The Streamlit prototype loads the Maria Reyes, trial, match-evidence, and source fixtures through the UI adapter. Generation, evaluation, and regeneration now use the connected CS1 services; their behavior remains deterministic. Sending remains simulated.
 
 ## Run the prototype
 
@@ -98,13 +98,15 @@ The prototype is intended to demonstrate a repeatable method for preparing and r
 
 ## Project status
 
-The CS2 Streamlit prototype is implemented and covers the complete fixture-backed demonstration path: queue, clinician review, editing, comprehension recheck, targeted regeneration, approval, delivery preview, simulated send, and reset. The current working plan is [Azra Team Working Plan V4](./Azra_Team_Working_Plan_V4.docx), and the task breakdown is in the [Wednesday Recovery Task Plan](./Azra_Wednesday_Recovery_Task_Plan.md). The prior [V3 change rationale](./Azra_Working_Plan_V3_Change_Rationale.md) remains available for the research decisions that preceded the September 29 update.
+The Streamlit prototype covers the complete fixture-backed demonstration path: queue, clinician review, patient context, editing, comprehension recheck, targeted regeneration, approval, delivery preview, simulated send, and reset. The current working plan is [Azra Team Working Plan V4](./Azra_Team_Working_Plan_V4.docx). The prior [V3 change rationale](./Azra_Working_Plan_V3_Change_Rationale.md) remains available for the research decisions that preceded the September 29 update.
 
-The Streamlit project structure and CS1/CS2 ownership boundary are documented in [Streamlit Application Structure](./STREAMLIT_APP_STRUCTURE.md). CS1-owned fixture and service placeholders remain unchanged. CS2-owned views run against deterministic demo behavior in `services/data_adapter.py` so the complete interface can be demonstrated and tested before service integration.
+The Streamlit project structure and CS1/CS2 ownership boundary are documented in [Streamlit Application Structure](./STREAMLIT_APP_STRUCTURE.md). CS2-owned views use `services/data_adapter.py`, which now normalizes the CS1 fixtures and calls the CS1 message services.
 
-### CS1 integration boundary
+The remaining content, real-data, delivery, workflow, and security work is prioritized in the [Demo Readiness Audit](./DEMO_READINESS_AUDIT.md).
 
-The views call only the CS2 adapter. When CS1's implementation is ready, connect these operations inside `services/data_adapter.py` without rewriting the Streamlit pages:
+### Service integration boundary
+
+The Streamlit pages use only these adapter operations:
 
 - `generate_outreach(patient, trial, match_evidence)`
 - `evaluate_message(message)`

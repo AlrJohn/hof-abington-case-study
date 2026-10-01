@@ -1,6 +1,6 @@
 # Streamlit Application Structure
 
-This structure separates the implemented CS2 interface from the CS1-owned generation and evaluation work. The current application uses deterministic demo behavior through the CS2 adapter until CS1's services are connected.
+This structure separates the implemented CS2 interface from the CS1-owned generation and evaluation work. The application now loads the CS1 fixtures and routes deterministic generation, evaluation, and targeted revision through the CS1 services via the adapter.
 
 ```text
 Hof_Abington_Case_Study/
@@ -38,7 +38,7 @@ Hof_Abington_Case_Study/
 
 ## Ownership Boundary
 
-CS1 owns the fixture contents and the functions that generate, evaluate, and regenerate outreach. The placeholder files for that work are labeled `Work to be done by CS1`.
+CS1 owns the fixture contents and the deterministic functions that generate, evaluate, and regenerate outreach. CS2 consumes those capabilities only through the adapter.
 
 CS2 owns the Streamlit entry point, view modules, UI state, presentation styling, and the adapter that shields the views from changes in CS1's response format.
 
@@ -56,4 +56,4 @@ regenerate_section(section_id, instruction, context)
 
 ## Current State
 
-The CS2 interface is implemented with deterministic synthetic behavior. CS1-owned fixture and service placeholders remain unchanged.
+The complete synthetic Maria Reyes / NCT04471194 case is connected end to end. The adapter loads patient, trial, match, and source fixtures, while runtime message operations call the CS1 service modules. The services remain deterministic prototype implementations; no EHR, live ClinicalTrials.gov feed, language model, delivery system, authentication, or durable database is connected.

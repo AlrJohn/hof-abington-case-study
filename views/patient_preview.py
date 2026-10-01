@@ -4,6 +4,7 @@ from html import escape
 
 import streamlit as st
 
+from services.data_adapter import get_case
 from services.ui_state import initialize_state, mark_sent
 from views.components import (
     patient_section_html,
@@ -36,6 +37,10 @@ def render() -> None:
             st.switch_page("views/clinician_review.py")
         return
 
+    case_data = get_case(st.session_state["selected_candidate_id"])
+    delivery = case_data["delivery"]
+    patient_name = case_data["patient_summary"]["display_name"]
+
     channel = st.radio(
         "Delivery concept",
         CHANNELS,
@@ -43,7 +48,7 @@ def render() -> None:
         horizontal=True,
         help="This prototype previews a channel but does not contact a patient.",
     )
-    render_channel_notice(channel)
+    render_channel_notice(channel, delivery["health_system_name"])
 
     sections_html = "".join(
         patient_section_html(section["title"], section["text"])
@@ -52,17 +57,16 @@ def render() -> None:
     patient_shell_html = (
         '<div class="azra-patient-shell">'
         '<div class="azra-patient-banner">'
-        "<span>Example Health Research Team</span>"
+        f"<span>{escape(delivery['sender_name'])}</span>"
         "<h1>A research study you may want to learn about</h1>"
         "</div>"
         f"{sections_html}"
         '<section class="azra-patient-section azra-verification-section">'
         "<h2>Verify this message</h2>"
-        "<p>Call Example Health at 555-0100 or sign in through the health system "
-        "website you normally use. Participation is voluntary.</p>"
+        f"<p>{escape(delivery['verification_text'])}</p>"
         "</section>"
         '<p style="color:#52525b;font-size:.75rem;margin:1rem 0 0;">'
-        f"Demo message for {escape('Jordan Lee (Synthetic)')} · No real patient data"
+        f"Demo message for {escape(patient_name)} · No real patient data"
         "</p>"
         "</div>"
     )

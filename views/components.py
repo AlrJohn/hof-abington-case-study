@@ -156,7 +156,7 @@ def patient_section_html(title: str, text: str) -> str:
     )
 
 
-def render_channel_notice(channel: str) -> None:
+def render_channel_notice(channel: str, organization: str) -> None:
     """Show the patient notification associated with the selected delivery concept."""
     notices = {
         "Patient Portal": (
@@ -165,11 +165,11 @@ def render_channel_notice(channel: str) -> None:
         ),
         "Email": (
             "Email notification",
-            "You have a new research opportunity message from Example Health. Sign in to the secure patient portal to review it.",
+            f"You have a new research opportunity message from {organization}. Sign in to the secure patient portal to review it.",
         ),
         "SMS": (
             "SMS notification",
-            "Example Health: You have a new research opportunity message. Sign in to your secure patient portal to review it.",
+            f"{organization}: You have a new research opportunity message. Sign in to your secure patient portal to review it.",
         ),
         "Other / Future Integration": (
             "Future integration",

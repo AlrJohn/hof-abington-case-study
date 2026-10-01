@@ -43,10 +43,11 @@ def generate_outreach(case_data: dict[str, Any]) -> dict[str, Any]:
     trial = _trial(case_data)
     match = _match(case_data)
 
-    patient_name = patient.get(
+    display_name = patient.get(
         "display_name",
         "Maria Reyes (Synthetic)"
     )
+    patient_name = display_name.removesuffix(" (Synthetic)").split()[0]
 
     trial_id = trial.get(
         "trial_id",
@@ -299,11 +300,11 @@ def regenerate_section(
             if sentence.strip()
         ]
 
-        new_text = (
-            ". ".join(sentences[:2]) + "."
-            if len(sentences) > 2
-            else original_text
-        )
+        if len(sentences) > 1:
+            new_text = sentences[0] + "."
+        else:
+            words = original_text.split()
+            new_text = " ".join(words[:24]).rstrip(".,;:") + "."
 
     elif normalized == "make this sound warmer":
         new_text = (

@@ -25,6 +25,7 @@ class StreamlitWorkflowTests(unittest.TestCase):
     def test_initial_queue_and_locked_patient_preview(self) -> None:
         rendered_markdown = "\n".join(element.value for element in self.app.markdown)
         self.assertIn("Candidate Queue", rendered_markdown)
+        self.assertIn("Maria Reyes (Synthetic)", rendered_markdown)
         self.assertEqual(self.app.session_state["workflow_status"], "Ready for outreach")
 
         self.app.switch_page("views/patient_preview.py").run()
@@ -38,6 +39,7 @@ class StreamlitWorkflowTests(unittest.TestCase):
         self.assertFalse(self.app.exception)
         self.assertEqual(len(self.app.text_area), 5)
         self.assertEqual(self.app.session_state["workflow_status"], "Draft")
+        self.assertEqual(self.app.session_state["message"]["patient_id"], "MARIA-001")
 
         find_button(self.app, "Approve message").click().run()
         self.assertFalse(self.app.exception)
@@ -45,6 +47,9 @@ class StreamlitWorkflowTests(unittest.TestCase):
 
         # Approval routes directly to the patient page in the real application.
         self.app.switch_page("views/patient_preview.py").run()
+        rendered_markdown = "\n".join(element.value for element in self.app.markdown)
+        self.assertIn("Maria Reyes (Synthetic)", rendered_markdown)
+        self.assertNotIn("Jordan Lee", rendered_markdown)
         find_button(self.app, "Simulate send").click().run()
         self.assertFalse(self.app.exception)
         self.assertTrue(self.app.session_state["sent"])
