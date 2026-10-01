@@ -1,3 +1,59 @@
 {
-  "_status": "Work to be done by CS1"
+  "version": 1,
+  "trial_id": "NCT04471194",
+  "patient_id": "MARIA-001",
+  "sections": [
+    {
+      "id": "why_me",
+      "title": "Urgent Message from Abington Hospital",
+      "text": "Dear Maria, based on the information in your medical record, our research team has found that you meet the initial criteria for a clinical study that may offer you a new option worth exploring.",
+      "source_ids": [
+        "SRC-TRIAL",
+        "SRC-ELIGIBILITY",
+        "SRC-PATIENT"
+      ],
+      "edited_by_clinician": false
+    },
+    {
+      "id": "about_study",
+      "title": "About the Study",
+      "text": "This study looks at stomach conditions that can sometimes turn into stomach cancer over time — conditions like chronic gastritis or intestinal metaplasia. Doctors want to learn why these conditions happen and how they change.",
+      "source_ids": [
+        "SRC-TRIAL",
+        "SRC-INTERVENTION"
+      ],
+      "edited_by_clinician": false
+    },
+    {
+      "id": "what_involves",
+      "title": "What Participation Involves",
+      "text": "If you take part, you may receive information about cancer screening and mailed screening materials. The study includes cervical cancer screening using an HPV self-sampling approach and colorectal cancer screening using a FIT test.",
+      "source_ids": [
+        "SRC-INTERVENTION"
+      ],
+      "edited_by_clinician": false
+    },
+    {
+      "id": "eligibility",
+      "title": "Why You May Be a Match",
+      "text": "The available information suggests that you may be a potential match. Your information indicates that you live in a rural Pennsylvania community and are overdue for both cervical and colorectal cancer screening. A study team member must confirm your eligibility.",
+      "source_ids": [
+        "SRC-ELIGIBILITY",
+        "SRC-EXCLUSION",
+        "SRC-PATIENT"
+      ],
+      "edited_by_clinician": false
+    },
+    {
+      "id": "next_steps",
+      "title": "Next Steps",
+      "text": "If you are interested, a member of the study team can explain the study, answer your questions, and confirm whether you are eligible. Receiving this message does not mean that you have cancer, and you do not have to participate.",
+      "source_ids": [
+        "SRC-TRIAL",
+        "SRC-ELIGIBILITY",
+        "SRC-PATIENT"
+      ],
+      "edited_by_clinician": false
+    }
+  ]
 }
