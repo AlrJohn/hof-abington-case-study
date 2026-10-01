@@ -1,3 +1,52 @@
 {
-  "_status": "Work to be done by CS1"
+  "patient_id": "MARIA-001",
+  "display_name": "Maria Reyes (Synthetic)",
+  "age": 54,
+  "sex": "Female",
+  "condition": "Cervical cancer screening",
+  "location": {
+    "city": "Eagles Mere",
+    "state": "PA",
+    "rural": true
+  },
+  "occupation": "School secretary",
+  "education": {
+    "highest_level": "High school diploma",
+    "additional_training": "Vocational training"
+  },
+  "communication": {
+    "english": true,
+    "reading_level": "General public",
+    "prefers_plain_language": true
+  },
+  "family_history": {
+    "mother_cervical_cancer": true
+  },
+  "screening": {
+    "cervical_screening_out_of_date": true,
+    "colorectal_screening_out_of_date": true
+  },
+  "medical_history": {
+    "partial_or_complete_hysterectomy": false,
+    "family_history_colorectal_cancer": false,
+    "personal_history_cervical_or_colorectal_cancer": false,
+    "cognitive_impairment": false,
+    "incarcerated": false
+  },
+  "communication_context": {
+    "anxious_about_cancer": true,
+    "confused_about_hpv": true,
+    "confused_about_self_sampling": true,
+    "unsure_whether_study_provides_personal_benefit": true,
+    "afraid_to_ask_questions": true,
+    "concerned_about_appearing_uninformed": true
+  },
+  "engagement": {
+    "letter_received": true,
+    "days_without_response": 21,
+    "responded": false,
+    "explicitly_declined": false,
+    "discarded_letter": true
+  },
+  "data_notice": "Synthetic case-study patient. No real patient data."
 }
