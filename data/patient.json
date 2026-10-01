@@ -1,4 +1,9 @@
-{
+import json
+from rich import print
+from rich.text import Text
+
+# Your patient data
+patient_data = {
   "patient_id": "MARIA-001",
   "display_name": "Maria  Reyes ",
   "age": 54,
@@ -7,7 +12,7 @@
   "location": {
     "city": "Eagles Mere",
     "state": "PA",
-    "rural": true
+    "rural": True
   },
   "occupation": "School secretary",
   "education": {
@@ -15,38 +20,61 @@
     "additional_training": "Vocational training"
   },
   "communication": {
-    "english": true,
+    "english": True,
     "reading_level": "General public",
-    "prefers_plain_language": true
+    "prefers_plain_language": True
   },
   "family_history": {
-    "mother_cervical_cancer": true
+    "mother_cervical_cancer": True
   },
   "screening": {
-    "cervical_screening_out_of_date": true,
-    "colorectal_screening_out_of_date": true
+    "cervical_screening_out_of_date": True,
+    "colorectal_screening_out_of_date": True
   },
   "medical_history": {
-    "partial_or_complete_hysterectomy": false,
-    "family_history_colorectal_cancer": false,
-    "personal_history_cervical_or_colorectal_cancer": false,
-    "cognitive_impairment": false,
-    "incarcerated": false
+    "partial_or_complete_hysterectomy": False,
+    "family_history_colorectal_cancer": False,
+    "personal_history_cervical_or_colorectal_cancer": False,
+    "cognitive_impairment": False,
+    "incarcerated": False
   },
   "communication_context": {
-    "anxious_about_cancer": true,
-    "confused_about_hpv": true,
-    "confused_about_self_sampling": true,
-    "unsure_whether_study_provides_personal_benefit": true,
-    "afraid_to_ask_questions": true,
-    "concerned_about_appearing_uninformed": true
+    "anxious_about_cancer": True,
+    "confused_about_hpv": True,
+    "confused_about_self_sampling": True,
+    "unsure_whether_study_provides_personal_benefit": True,
+    "afraid_to_ask_questions": True,
+    "concerned_about_appearing_uninformed": True
   },
   "engagement": {
-    "letter_received": true,
+    "letter_received": True,
     "days_without_response": 21,
-    "responded": false,
-    "explicitly_declined": false,
-    "discarded_letter": true
+    "responded": False,
+    "explicitly_declined": False,
+    "discarded_letter": True
   },
   "data_notice": "Synthetic case-study patient. No real patient data."
 }
+
+# 1. Convert the dictionary into a pretty-printed JSON string
+json_str = json.dumps(patient_data, indent=2)
+
+# 2. Build a Rich Text object line by line to target booleans
+rich_text = Text()
+for line in json_str.splitlines():
+    # If the line ends with a boolean (true or false, potentially followed by a comma)
+    if line.endswith("true") or line.endswith("true,"):
+        parts = line.rsplit("true", 1)
+        rich_text.append(parts[0])
+        rich_text.append("true", style="bold purple")
+        rich_text.append(parts[1] + "\n")
+    elif line.endswith("false") or line.endswith("false,"):
+        parts = line.rsplit("false", 1)
+        rich_text.append(parts[0])
+        rich_text.append("false", style="bold purple")
+        rich_text.append(parts[1] + "\n")
+    else:
+        rich_text.append(line + "\n")
+
+# 3. Print the styled output to the terminal
+print(rich_text)
