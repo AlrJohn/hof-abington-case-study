@@ -1,3 +1,38 @@
 {
-  "_status": "Work to be done by CS1"
+  "sources": [
+    {
+      "id": "SRC-TRIAL",
+      "label": "ClinicalTrials.gov — NCT04471194",
+      "category": "Trial record",
+      "detail": "Public clinical-trial record for NCT04471194.",
+      "url": "https://clinicaltrials.gov/study/NCT04471194"
+    },
+    {
+      "id": "SRC-ELIGIBILITY",
+      "label": "ClinicalTrials.gov — Inclusion criteria",
+      "category": "Eligibility",
+      "detail": "Eligibility criteria describing the rural Pennsylvania, English communication, and overdue screening requirements.",
+      "url": "https://clinicaltrials.gov/study/NCT04471194"
+    },
+    {
+      "id": "SRC-EXCLUSION",
+      "label": "ClinicalTrials.gov — Exclusion criteria",
+      "category": "Eligibility",
+      "detail": "Study exclusion criteria.",
+      "url": "https://clinicaltrials.gov/study/NCT04471194"
+    },
+    {
+      "id": "SRC-INTERVENTION",
+      "label": "ClinicalTrials.gov — Intervention",
+      "category": "Study intervention",
+      "detail": "Information about mailed self-sampling HPV testing, FIT testing, and educational materials.",
+      "url": "https://clinicaltrials.gov/study/NCT04471194"
+    },
+    {
+      "id": "SRC-PATIENT",
+      "label": "Synthetic patient case",
+      "category": "Patient context",
+      "detail": "Synthetic case-study information supplied for Maria Reyes. No real patient data."
+    }
+  ]
 }
