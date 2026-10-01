@@ -1,19 +1,32 @@
 {
-  "overall_score": 95,
-  "criterion_scores": {
-    "Purpose": 95,
-    "Familiar language": 92,
-    "Sentence clarity": 92,
-    "Organization": 95,
-    "Participation information": 94,
-    "Actionability": 94,
-    "Trust": 96,
-    "Safety language": 97
+  "trial_id": "NCT04471194",
+  "title": "Multilevel Intervention Based on Colorectal Cancer (CRC) and Cervical Cancer Self-screening in Rural, Segregated Areas",
+  "phase": "Not Applicable",
+  "study_type": "Interventional",
+  "source": {
+    "name": "ClinicalTrials.gov",
+    "url": "https://clinicaltrials.gov/study/NCT04471194"
   },
-  "issues": [
-    "No basic comprehension issues detected by the fixed rubric."
+  "conditions": [
+    "Colorectal Cancer",
+    "Cervical Cancer"
   ],
-  "recommendation": "Ready for clinician review",
-  "is_stale": false,
-  "label": "Model-assisted rubric evaluation"
+  "population": "Women in rural, segregated areas",
+  "inclusion_criteria": [
+    "Lives in a rural, segregated county of Pennsylvania",
+    "Able to speak, read, and communicate well in English",
+    "Out of date for both cervical cancer screening and colorectal cancer screening"
+  ],
+  "exclusion_criteria": [
+    "Partial or complete hysterectomy",
+    "Family history of colorectal cancer",
+    "Personal history of cervical or colorectal cancer",
+    "Cognitive impairment",
+    "Incarceration"
+  ],
+  "interventions": [
+    "Mailed self-sampling HPV testing",
+    "Fecal immunochemical testing (FIT)",
+    "Adapted cancer screening educational materials"
+  ]
 }
