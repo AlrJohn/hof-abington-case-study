@@ -142,9 +142,9 @@ def generate_outreach(case_data: dict[str, Any]) -> dict[str, Any]:
                 "id": "next_steps",
                 "title": "Next Steps",
                 "text": (
-                    "If you are interested, a member of the study team "
+                    "If you are interested, contact a licensed medical professional who "
                     "can explain the study, answer your questions, and "
-                    "confirm whether you are eligible. Receiving this "
+                    "confirm any details. Receiving this "
                     "message does not mean that you have cancer, and "
                     "you do not have to participate."
                 ),
