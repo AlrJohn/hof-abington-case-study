@@ -123,8 +123,8 @@ def generate_outreach(case_data: dict[str, Any]) -> dict[str, Any]:
                 "id": "eligibility",
                 "title": "Why You Are a Perfect Match",
                 "text": (
-                    f"The available information lists your preliminary "
-                    f"study match as \"{match_status.replace('_', ' ').title()}."
+                    f"The available information lists your preliminary
+                    f"study match as Perfect"
                     "\" Your information indicates that you live in a "
                     "rural Pennsylvania community and are overdue for "
                     "both cervical and colorectal cancer screening. "
