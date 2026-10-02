@@ -6,7 +6,7 @@
     {
       "id": "why_me",
       "title": "Why Me",
-      "text": "Hello Maria. You may be receiving this message because you are due for cervical and colorectal cancer screening. A research study is looking at ways to make these screenings easier for people in rural communities.",
+      "text": "Hello Maria. You may be receiving this message because you are due for cervical and colorectal cancer screening. A research study is looking at ways to make these screenings easier for people in rural Pennsylvania communities.",
       "source_ids": [
         "SRC-TRIAL",
         "SRC-ELIGIBILITY",
@@ -35,8 +35,8 @@
     },
     {
       "id": "eligibility",
-      "title": "Why You Are A Match",
-      "text": "The available information lists your preliminary study match as \"Perfect Match.\" Your information indicates that you live in a rural Pennsylvania community and are overdue for both cervical and colorectal cancer screening. ",
+      "title": "Why You May Be a Match",
+      "text": "The available information lists you as a potential match for this study. Your information indicates that you live in a rural Pennsylvania community and are due for cervical and colorectal cancer screening. A study team member must review your information and confirm whether you are eligible before you can participate.",
       "source_ids": [
         "SRC-ELIGIBILITY",
         "SRC-EXCLUSION",
@@ -47,7 +47,7 @@
     {
       "id": "next_steps",
       "title": "Next Steps",
-      "text": "If you are interested, a member of the study team can explain the study, answer your questions, and confirm any Important details. Receiving this message does not mean that you have cancer, and you do not have to participate.",
+      "text": "If you are interested, a member of the study team can explain the study, answer your questions, and confirm whether you are eligible. Receiving this message does not mean that you have cancer, and you do not have to participate.",
       "source_ids": [
         "SRC-TRIAL",
         "SRC-ELIGIBILITY",

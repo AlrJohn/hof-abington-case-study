@@ -23,7 +23,7 @@ class DataAdapterTests(unittest.TestCase):
         evaluation = evaluate_message(message)
 
         self.assertEqual(candidate["id"], DEMO_CANDIDATE_ID)
-        self.assertEqual(candidate["display_name"], "Maria Reyes (Synthetic)")
+        self.assertEqual(candidate["display_name"], "Maria Reyes")
         self.assertEqual(case_data["patient"]["age"], 54)
         self.assertEqual(case_data["trial"]["trial_id"], "NCT04471194")
         self.assertEqual(case_data["match_evidence"]["patient_id"], DEMO_CANDIDATE_ID)
@@ -45,6 +45,46 @@ class DataAdapterTests(unittest.TestCase):
         for section_id in original:
             if section_id != "what_involves":
                 self.assertEqual(original[section_id], revised[section_id])
+
+    def test_each_revision_preset_changes_each_selected_section(self) -> None:
+        message = generate_outreach(get_case(DEMO_CANDIDATE_ID))
+        original_text = {
+            section["id"]: section["text"]
+            for section in message["sections"]
+        }
+        instructions = (
+            "Make this easier to understand",
+            "Make this shorter",
+            "Make this sound warmer",
+        )
+
+        for section in message["sections"]:
+            for instruction in instructions:
+                with self.subTest(section=section["id"], instruction=instruction):
+                    updated = regenerate_section(section["id"], instruction, message)
+                    updated_by_id = {
+                        item["id"]: item
+                        for item in updated["sections"]
+                    }
+                    revised = updated_by_id[section["id"]]
+
+                    self.assertNotEqual(revised["text"], original_text[section["id"]])
+                    self.assertEqual(revised["source_ids"], section["source_ids"])
+                    self.assertEqual(revised["last_instruction"], instruction)
+                    for other_id, other_text in original_text.items():
+                        if other_id != section["id"]:
+                            self.assertEqual(updated_by_id[other_id]["text"], other_text)
+
+    def test_warmer_why_me_is_personalized_and_safe(self) -> None:
+        message = generate_outreach(get_case(DEMO_CANDIDATE_ID))
+        updated = regenerate_section("why_me", "Make this sound warmer", message)
+        why_me = next(
+            section for section in updated["sections"] if section["id"] == "why_me"
+        )
+
+        self.assertIn("Hello Maria", why_me["text"])
+        self.assertIn("bring up questions", why_me["text"])
+        self.assertNotIn("perfect match", why_me["text"].lower())
 
     def test_sources_are_resolved_from_fixture(self) -> None:
         case_data = get_case(DEMO_CANDIDATE_ID)

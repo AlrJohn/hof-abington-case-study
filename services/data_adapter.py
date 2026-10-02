@@ -156,7 +156,14 @@ def regenerate_section(
     message: Message,
 ) -> Message:
     """Regenerate one section through the CS1 service boundary."""
-    return _regenerate_section(section_id, instruction, deepcopy(message))
+    patient_id = str(message.get("patient_id", DEMO_CANDIDATE_ID))
+    case_data = get_case(patient_id)
+    return _regenerate_section(
+        section_id,
+        instruction,
+        deepcopy(message),
+        case_data,
+    )
 
 
 def get_sources(case_data: CaseData, source_ids: list[str]) -> list[dict[str, str]]:

@@ -25,7 +25,7 @@ class StreamlitWorkflowTests(unittest.TestCase):
     def test_initial_queue_and_locked_patient_preview(self) -> None:
         rendered_markdown = "\n".join(element.value for element in self.app.markdown)
         self.assertIn("Candidate Queue", rendered_markdown)
-        self.assertIn("Maria Reyes (Synthetic)", rendered_markdown)
+        self.assertIn("Maria Reyes", rendered_markdown)
         self.assertEqual(self.app.session_state["workflow_status"], "Ready for outreach")
 
         self.app.switch_page("views/patient_preview.py").run()
@@ -48,12 +48,35 @@ class StreamlitWorkflowTests(unittest.TestCase):
         # Approval routes directly to the patient page in the real application.
         self.app.switch_page("views/patient_preview.py").run()
         rendered_markdown = "\n".join(element.value for element in self.app.markdown)
-        self.assertIn("Maria Reyes (Synthetic)", rendered_markdown)
+        self.assertIn("Maria Reyes", rendered_markdown)
         self.assertNotIn("Jordan Lee", rendered_markdown)
         find_button(self.app, "Simulate send").click().run()
         self.assertFalse(self.app.exception)
         self.assertTrue(self.app.session_state["sent"])
         self.assertEqual(self.app.session_state["workflow_status"], "Sent")
+
+    def test_warmer_why_me_button_updates_only_that_section(self) -> None:
+        self.app.switch_page("views/clinician_review.py").run()
+        find_button(self.app, "Generate outreach").click().run()
+        original = {
+            section["id"]: section["text"]
+            for section in self.app.session_state["message"]["sections"]
+        }
+
+        self.app.selectbox(key="revision_section").select("why_me")
+        self.app.selectbox(key="revision_preset").select("Make this sound warmer")
+        find_button(self.app, "Regenerate selected section").click().run()
+
+        revised = {
+            section["id"]: section["text"]
+            for section in self.app.session_state["message"]["sections"]
+        }
+        self.assertIn("Hello Maria", revised["why_me"])
+        self.assertIn("bring up questions", revised["why_me"])
+        self.assertNotEqual(original["why_me"], revised["why_me"])
+        for section_id in original:
+            if section_id != "why_me":
+                self.assertEqual(original[section_id], revised[section_id])
 
 
 if __name__ == "__main__":
