@@ -1,4 +1,6 @@
-"""Approved patient message, channel preview, and simulated-send view."""
+
+
+    """Approved patient message, channel preview, and simulated-send view."""
 
 from html import escape
 
@@ -50,25 +52,48 @@ def render() -> None:
     )
     render_channel_notice(channel, delivery["health_system_name"])
 
-  # Build the five message sections from the current CS1-generated message.
-sections_html = "".join(
-    patient_section_html(section["title"], section["text"])
-    for section in st.session_state["message"]["sections"]
-)
+    sections_html = "".join(
+        patient_section_html(section["title"], section["text"])
+        for section in st.session_state["message"]["sections"]
+    )
+    patient_shell_html = (
+        '<div class="azra-patient-shell">'
+        '<div class="azra-patient-banner">'
+        f"<span>{escape(delivery['sender_name'])}</span>"
+        "<h1>A research study you may want to learn about</h1>"
+        "</div>"
+        f"{sections_html}"
+        '<section class="azra-patient-section azra-verification-section">'
+        "<h2>Verify this message</h2>"
+        f"<p>{escape(delivery['verification_text'])}</p>"
+        "</section>"
+        '<p style="color:#52525b;font-size:.75rem;margin:1rem 0 0;">'
+        f"Demo message for {escape(patient_name)} · No real patient data"
+        "</p>"
+        "</div>"
+    )
+    st.markdown(patient_shell_html, unsafe_allow_html=True)
 
-patient_shell_html = (
-    '<div class="azra-patient-shell">'
-    '<div class="azra-patient-banner">'
-    "<span>Example Health Research Team</span>"
-    "<h1>A research study you may want to learn about</h1>"
-    "</div>"
-    f"{sections_html}"
-    ...
-)
+    st.info(
+        "The patient view intentionally excludes match evidence, source IDs, internal scores, and clinician controls.",
+    )
 
-st.markdown(patient_shell_html, unsafe_allow_html=True)
+    with st.container(key="patient_actions"):
+        back, send = st.columns([1, 1])
+        with back:
+            if st.button("Back to clinician review", use_container_width=True):
+                st.switch_page("views/clinician_review.py")
+        with send:
+            if not st.session_state["sent"]:
+                if st.button(
+                    "Simulate send",
+                    type="primary",
+                    use_container_width=True,
+                ):
+                    mark_sent(st.session_state)
+                    st.rerun()
+            else:
+                st.success("Simulated delivery complete. No external message was sent.")
+
+
 render()
-
-
-
-    
