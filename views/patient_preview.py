@@ -1,6 +1,4 @@
-
-
-    """Approved patient message, channel preview, and simulated-send view."""
+"""Approved patient message, channel preview, and simulated-send view."""
 
 from html import escape
 
