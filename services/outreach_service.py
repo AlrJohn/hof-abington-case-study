@@ -285,9 +285,9 @@ def regenerate_section(
 
         elif section_id == "next_steps":
             new_text = (
-                "If you are interested, a study team member can "
-                "answer your questions and check whether you can "
-                "take part. You do not have to participate."
+                "If you are interested, contact a licensed medical professional who can "
+                "answer your questions and confirm any details "
+                "There is no obligation to participate."
             )
 
         else:
