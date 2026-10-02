@@ -128,8 +128,7 @@ def generate_outreach(case_data: dict[str, Any]) -> dict[str, Any]:
                     "\" Your information indicates that you live in a "
                     "rural Pennsylvania community and are overdue for "
                     "both cervical and colorectal cancer screening. "
-                    "A study team member must confirm your eligibility "
-                    "before you can participate."
+                    
                     
                 ),
                 "source_ids": [
