@@ -48,5 +48,5 @@
     "explicitly_declined": false,
     "discarded_letter": true
   },
-  "data_notice": "Synthetic case-study patient. No real patient data."
+  "data_notice": "Practice case-study patient. No real patient data."
 }
