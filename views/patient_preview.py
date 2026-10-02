@@ -50,48 +50,176 @@ def render() -> None:
     )
     render_channel_notice(channel, delivery["health_system_name"])
 
-    sections_html = "".join(
-        patient_section_html(section["title"], section["text"])
-        for section in st.session_state["message"]["sections"]
-    )
-    patient_shell_html = (
-        '<div class="azra-patient-shell">'
-        '<div class="azra-patient-banner">'
-        f"<span>{escape(delivery['sender_name'])}</span>"
-        "<h1>A research study you may want to learn about</h1>"
-        "</div>"
-        f"{sections_html}"
-        '<section class="azra-patient-section azra-verification-section">'
-        "<h2>Verify this message</h2>"
-        f"<p>{escape(delivery['verification_text'])}</p>"
-        "</section>"
-        '<p style="color:#52525b;font-size:.75rem;margin:1rem 0 0;">'
-        f"Demo message for {escape(patient_name)} · No real patient data"
-        "</p>"
-        "</div>"
-    )
-    st.markdown(patient_shell_html, unsafe_allow_html=True)
+  # Build the five message sections from the current CS1-generated message.
+sections_html = "".join(
+    patient_section_html(section["title"], section["text"])
+    for section in st.session_state["message"]["sections"]
+)
 
-    st.info(
-        "The patient view intentionally excludes match evidence, source IDs, internal scores, and clinician controls.",
-    )
+patient_shell_html = f"""
+<style>
+.patient-phone-wrapper {{
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 25px 0;
+}}
 
-    with st.container(key="patient_actions"):
-        back, send = st.columns([1, 1])
-        with back:
-            if st.button("Back to clinician review", use_container_width=True):
-                st.switch_page("views/clinician_review.py")
-        with send:
-            if not st.session_state["sent"]:
-                if st.button(
-                    "Simulate send",
-                    type="primary",
-                    use_container_width=True,
-                ):
-                    mark_sent(st.session_state)
-                    st.rerun()
-            else:
-                st.success("Simulated delivery complete. No external message was sent.")
+.patient-phone {{
+    width: 390px;
+    min-height: 720px;
+    border: 10px solid #18181b;
+    border-radius: 42px;
+    background: #f8fafc;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.22);
+    overflow: hidden;
+    position: relative;
+}}
 
+.patient-status-bar {{
+    height: 32px;
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 18px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #18181b;
+}}
 
-render()
+.patient-header {{
+    background: white;
+    border-bottom: 1px solid #e4e4e7;
+    padding: 16px 20px;
+}}
+
+.patient-header-title {{
+    font-size: 23px;
+    font-weight: 700;
+    color: #18181b;
+}}
+
+.patient-header-subtitle {{
+    font-size: 13px;
+    color: #71717a;
+    margin-top: 3px;
+}}
+
+.patient-message-card {{
+    margin: 20px 16px;
+    background: white;
+    border: 1px solid #e4e4e7;
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}}
+
+.patient-unread {{
+    display: inline-block;
+    background: #2563eb;
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+}}
+
+.patient-sender {{
+    font-size: 14px;
+    font-weight: 700;
+    color: #18181b;
+}}
+
+.patient-subject {{
+    font-size: 19px;
+    font-weight: 700;
+    color: #18181b;
+    margin-top: 7px;
+}}
+
+.patient-preview {{
+    font-size: 14px;
+    line-height: 1.55;
+    color: #52525b;
+    margin-top: 9px;
+}}
+
+.patient-date {{
+    font-size: 11px;
+    color: #a1a1aa;
+    margin-top: 14px;
+}}
+
+.patient-content {{
+    height: 570px;
+    overflow-y: auto;
+    padding: 18px;
+}}
+
+.patient-content .azra-patient-section {{
+    margin-bottom: 18px;
+}}
+
+.patient-home {{
+    height: 35px;
+    width: 120px;
+    background: #18181b;
+    border-radius: 20px;
+    margin: 12px auto;
+}}
+</style>
+
+<div class="patient-phone-wrapper">
+    <div class="patient-phone">
+
+        <div class="patient-status-bar">
+            <span>9:41</span>
+            <span>● ● ● 🔋</span>
+        </div>
+
+        <div class="patient-header">
+            <div class="patient-header-title">Messages</div>
+            <div class="patient-header-subtitle">
+                Maria Reyes
+            </div>
+        </div>
+
+        <div class="patient-message-card">
+
+            <div class="patient-unread">
+                NEW MESSAGE
+            </div>
+
+            <div class="patient-sender">
+                Example Health Research Team
+            </div>
+
+            <div class="patient-subject">
+                Clinical Trial Opportunity
+            </div>
+
+            <div class="patient-preview">
+                You may be receiving this message because
+                you are due for cervical and colorectal
+                cancer screening...
+            </div>
+
+            <div class="patient-date">
+                Today · New message
+            </div>
+
+        </div>
+
+        <div class="patient-content">
+            {sections_html}
+        </div>
+
+        <div class="patient-home"></div>
+
+    </div>
+</div>
+"""
+
+st.markdown(patient_shell_html, unsafe_allow_html=True)
+    
